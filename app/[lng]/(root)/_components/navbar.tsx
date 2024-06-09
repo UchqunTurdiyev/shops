@@ -3,6 +3,7 @@ import DarkMood from '@/components/shared/dark-mood';
 import LanguageDropdown from '@/components/shared/language-dropdown';
 import Search from '@/components/shared/search';
 import { Button } from '@/components/ui/button';
+import { SignInButton, SignUpButton } from '@clerk/nextjs';
 import { ShoppingCart } from 'lucide-react';
 import Link from 'next/link';
 import React from 'react';
@@ -36,12 +37,16 @@ export default function Navbar() {
 						</Button>
 					</div>
 
-					<Button size={'lg'} variant={'ghost'} className='rounded-xl'>
-						Login
-					</Button>
-					<Button size={'lg'} className='rounded-xl'>
-						Register
-					</Button>
+					<SignInButton mode={'modal'}>
+						<Button size={'lg'} variant={'ghost'} className='rounded-xl'>
+							Login
+						</Button>
+					</SignInButton>
+					<SignUpButton mode={'modal'}>
+						<Button size={'lg'} className='rounded-xl'>
+							Register
+						</Button>
+					</SignUpButton>
 				</div>
 			</nav>
 		</div>

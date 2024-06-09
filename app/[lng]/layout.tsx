@@ -5,6 +5,7 @@ import { RootNode } from '@/types';
 import { ThemeProvider } from '@/components/shared/theme.provider';
 import { dir } from 'i18next';
 import { languages } from '@/i18n/settings';
+import { ClerkProvider } from '@clerk/nextjs';
 
 const ptSans = PTSans({
 	subsets: ['latin', 'cyrillic'],
@@ -33,12 +34,14 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children, params: { lng } }: Props) {
 	return (
-		<html lang={lng} suppressHydrationWarning dir={dir(lng)}>
-			<body className={`${ptSans.variable} ${marcellus.variable}`}>
-				<ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
-					{children}
-				</ThemeProvider>
-			</body>
-		</html>
+		<ClerkProvider>
+			<html lang={lng} suppressHydrationWarning dir={dir(lng)}>
+				<body className={`${ptSans.variable} ${marcellus.variable}`}>
+					<ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>
+						{children}
+					</ThemeProvider>
+				</body>
+			</html>
+		</ClerkProvider>
 	);
 }
