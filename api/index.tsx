@@ -1,8 +1,8 @@
 export const navApi = [
-	{ id: 1, route: '/', nav: 'Home' },
-	{ id: 2, route: '/about', nav: 'About' },
-	{ id: 3, route: '/products', nav: 'Products' },
-	{ id: 4, route: '/contact', nav: 'Contact' },
+	{ id: 1, route: '/', nav: 'home' },
+	{ id: 2, route: '/about', nav: 'about' },
+	{ id: 3, route: '/products', nav: 'products' },
+	{ id: 4, route: '/contact', nav: 'contact' },
 ];
 
 export const lngApi = [
