@@ -1,15 +1,20 @@
+'use client';
 import { navApi } from '@/api';
 import DarkMood from '@/components/shared/dark-mood';
 import LanguageDropdown from '@/components/shared/language-dropdown';
 import Search from '@/components/shared/search';
 import { Button } from '@/components/ui/button';
-import { SignInButton, SignUpButton } from '@clerk/nextjs';
+import { SignInButton, SignUpButton, SignedOut, UserButton, SignedIn } from '@clerk/nextjs';
 import { ShoppingCart } from 'lucide-react';
+import { useTheme } from 'next-themes';
 import Link from 'next/link';
 import React from 'react';
 import { FaOpencart } from 'react-icons/fa';
+import { dark } from '@clerk/themes';
+import UserBox from '@/components/shared/user-box';
 
 export default function Navbar() {
+	const { resolvedTheme } = useTheme();
 	return (
 		<div className='fixed inset-0 z-40 h-20 w-full '>
 			<nav className='mx-auto flex h-20 max-w-7xl items-center justify-between  border-b px-5 md:px-0'>
@@ -36,17 +41,22 @@ export default function Navbar() {
 							<ShoppingCart />
 						</Button>
 					</div>
+					<SignedIn>
+						<UserBox />
+					</SignedIn>
 
-					<SignInButton mode={'modal'}>
-						<Button size={'lg'} variant={'ghost'} className='rounded-xl'>
-							Login
-						</Button>
-					</SignInButton>
-					<SignUpButton mode={'modal'}>
-						<Button size={'lg'} className='rounded-xl'>
-							Register
-						</Button>
-					</SignUpButton>
+					<SignedOut>
+						<SignInButton mode={'modal'}>
+							<Button size={'lg'} variant={'ghost'} className='rounded-xl'>
+								Login
+							</Button>
+						</SignInButton>
+						<SignUpButton mode={'modal'}>
+							<Button size={'lg'} className='rounded-xl'>
+								Register
+							</Button>
+						</SignUpButton>
+					</SignedOut>
 				</div>
 			</nav>
 		</div>

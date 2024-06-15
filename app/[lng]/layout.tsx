@@ -6,6 +6,7 @@ import { ThemeProvider } from '@/components/shared/theme.provider';
 import { dir } from 'i18next';
 import { languages } from '@/i18n/settings';
 import { ClerkProvider } from '@clerk/nextjs';
+import { localization } from '@/lib/utils';
 
 const ptSans = PTSans({
 	subsets: ['latin', 'cyrillic'],
@@ -33,8 +34,9 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children, params: { lng } }: Props) {
+	const local = localization(lng);
 	return (
-		<ClerkProvider>
+		<ClerkProvider localization={local}>
 			<html lang={lng} suppressHydrationWarning dir={dir(lng)}>
 				<body className={`${ptSans.variable} ${marcellus.variable}`}>
 					<ThemeProvider attribute='class' defaultTheme='system' enableSystem disableTransitionOnChange>

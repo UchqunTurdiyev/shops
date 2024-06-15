@@ -2,13 +2,13 @@ import { authMiddleware } from '@clerk/nextjs/server';
 
 import createMiddleware from 'next-intl/middleware';
 
-const imtelMidlleware = createMiddleware({
-	locales: ['en', 'uz', 'ru'],
+const intlMiddleware = createMiddleware({
+	locales: ['en', 'ru', 'uz'],
 	defaultLocale: 'en',
 });
 
 export default authMiddleware({
-	beforeAuth: req => imtelMidlleware(req),
+	beforeAuth: req => intlMiddleware(req),
 	publicRoutes: ['/:lng'],
 });
 
